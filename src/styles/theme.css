@@ -1,0 +1,101 @@
+:root {
+  --gt-black: #0d0d0d;
+  --gt-black-soft: #161616;
+  --gt-panel: #1c1c1c;
+  --gt-yellow: #f4e600;
+  --gt-yellow-dim: #c9bd00;
+  --gt-white: #f5f5f0;
+  --gt-grey: #8a8a85;
+  --gt-border: #2c2c2c;
+  --gt-danger: #ff5c5c;
+  --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--gt-black);
+  color: var(--gt-white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+a {
+  color: var(--gt-yellow);
+}
+
+::selection {
+  background: var(--gt-yellow);
+  color: var(--gt-black);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--gt-black-soft);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gt-border);
+  border-radius: 4px;
+}
+
+.gt-btn-primary {
+  background: var(--gt-yellow);
+  color: var(--gt-black);
+  border: none;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+.gt-btn-primary:hover {
+  background: var(--gt-yellow-dim);
+}
+.gt-btn-primary:disabled {
+  background: var(--gt-border);
+  color: var(--gt-grey);
+  cursor: not-allowed;
+}
+
+.gt-btn-ghost {
+  background: transparent;
+  color: var(--gt-white);
+  border: 1px solid var(--gt-border);
+  padding: 10px 18px;
+  border-radius: 6px;
+}
+.gt-btn-ghost:hover {
+  border-color: var(--gt-yellow);
+  color: var(--gt-yellow);
+}
+
+.gt-input {
+  background: var(--gt-black-soft);
+  border: 1px solid var(--gt-border);
+  color: var(--gt-white);
+  padding: 12px 14px;
+  border-radius: 6px;
+  font-size: 15px;
+  width: 100%;
+}
+.gt-input:focus {
+  outline: none;
+  border-color: var(--gt-yellow);
+}
+.gt-input::placeholder {
+  color: var(--gt-grey);
+}
