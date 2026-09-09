@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
-import griffinLogo from '../assets/griffin-logo.png'
 
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
@@ -8,7 +7,7 @@ export default function BookingPage({ username }) {
   const [host, setHost] = useState(null)
   const [availability, setAvailability] = useState([])
   const [existingBookings, setExistingBookings] = useState([])
-  const [status, setStatus] = useState('loading')
+  const [status, setStatus] = useState('loading') // loading | ready | notfound
   const [selectedSlot, setSelectedSlot] = useState(null)
   const [guestName, setGuestName] = useState('')
   const [guestEmail, setGuestEmail] = useState('')
@@ -49,6 +48,7 @@ export default function BookingPage({ username }) {
     load()
   }, [username])
 
+  // Build a list of open slots for the next 14 days from the weekly availability rules
   function getUpcomingSlots() {
     if (!availability.length) return []
     const slots = []
@@ -126,7 +126,6 @@ export default function BookingPage({ username }) {
     return (
       <div style={styles.wrap}>
         <div style={styles.card}>
-          <img src={griffinLogo} alt="" style={styles.griffin} />
           <h1 style={styles.title}>You're booked!</h1>
           <p style={styles.tagline}>
             {selectedSlot.start.toLocaleString([], { weekday: 'long', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
@@ -150,7 +149,6 @@ export default function BookingPage({ username }) {
     <div style={styles.wrap}>
       <div style={styles.bookCard}>
         <div style={styles.bookHeader}>
-          <img src={griffinLogo} alt="" style={styles.griffinSmall} />
           <div>
             <h1 style={styles.bookTitle}>Book time with {host.display_name}</h1>
             <p style={styles.bookSub}>via Griffin Talk</p>
