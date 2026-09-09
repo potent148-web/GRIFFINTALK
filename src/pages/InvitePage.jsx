@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { supabase, signUpWithUsername } from '../lib/supabase'
-import griffinLogo from '../assets/griffin-logo.png'
 
 export default function InvitePage({ code }) {
   const [invite, setInvite] = useState(null)
-  const [status, setStatus] = useState('checking')
+  const [status, setStatus] = useState('checking') // checking | valid | invalid
   const [username, setUsername] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [password, setPassword] = useState('')
@@ -63,6 +62,7 @@ export default function InvitePage({ code }) {
       return
     }
 
+    // Join the invite's target channel if one is set, and bump use count
     if (data?.user && invite.channel_id) {
       await supabase.from('channel_members').insert({
         channel_id: invite.channel_id,
@@ -85,7 +85,6 @@ export default function InvitePage({ code }) {
     return (
       <div style={styles.wrap}>
         <div style={styles.card}>
-          <img src={griffinLogo} alt="" style={styles.griffin} />
           <h1 style={styles.title}>Invite not valid</h1>
           <p style={styles.tagline}>This invite link has expired or reached its limit. Ask for a new one.</p>
         </div>
@@ -97,7 +96,6 @@ export default function InvitePage({ code }) {
     return (
       <div style={styles.wrap}>
         <div style={styles.card}>
-          <img src={griffinLogo} alt="" style={styles.griffin} />
           <h1 style={styles.title}>You're in!</h1>
           <p style={styles.tagline}>Account created. Refresh and log in to start chatting.</p>
           <a className="gt-btn-primary" href="/" style={{ display: 'inline-block', textDecoration: 'none', marginTop: 10 }}>
@@ -111,7 +109,6 @@ export default function InvitePage({ code }) {
   return (
     <div style={styles.wrap}>
       <div style={styles.card}>
-        <img src={griffinLogo} alt="" style={styles.griffin} />
         <h1 style={styles.title}>Join Griffin Talk</h1>
         <p style={styles.tagline}>You've been invited to the team.</p>
 
